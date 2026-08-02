@@ -119,9 +119,32 @@ foreach ($jobName in $jobs.Keys) {
     $lines.Add('echo  ' + $job.Title)
     $lines.Add('echo ============================================================')
     $lines.Add('echo.')
-    $lines.Add('echo Directory:')
-    $lines.Add('echo %CD%')
+
+    $lines.Add('echo Title:')
+    $lines.Add('echo ' + $job.Title)
     $lines.Add('echo.')
+
+    $lines.Add('echo WorkDir:')
+    $lines.Add('echo ' + $job.WorkDir)
+    $lines.Add('echo.')
+
+    $lines.Add('echo Setup:')
+
+    if ($job.Setup.Count -gt 0) {
+        foreach ($setupCommand in $job.Setup) {
+            $lines.Add('echo ' + $setupCommand)
+        }
+    }
+    else {
+        $lines.Add('echo ^(none^)')
+    }
+
+    $lines.Add('echo.')
+
+    $lines.Add('echo Command:')
+    $lines.Add('echo ' + $job.Command)
+    $lines.Add('echo.')
+
     $lines.Add('echo Press Ctrl+C to stop the application.')
     $lines.Add('echo The Command Prompt will remain open afterward.')
     $lines.Add('echo.')
